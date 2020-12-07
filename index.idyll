@@ -1,0 +1,116 @@
+[meta title:"IS445_final" description:"Short description of your project" /]
+
+[Header
+  fullWidth:true
+  title:"FIFA Player Analyst"
+  subtitle:"IS445_final"
+  author:"Baisheng Qiu"
+  authorLink:"https://idyll-lang.org"
+  date:`(new Date()).toDateString()`
+  background:"#222222"
+  color:"#ffffff"
+   /]
+
+
+## Introduction
+Welcome guys, this data analyst will be using the data from Kaggle. The data collected from a famous game "FIFA19".This data contains all the information of the
+players, include body, weight, Nationality, height, skills, Value, etc. In the game, I will be the team manager to decide how to build the team. To want to win every match in this game, you have to build your best team by looking at different data, choosing the player
+the first important thing in this game.
+Let see what we have!!
+
+##Data: FIFA19 complete player dataset
+
+Since the data was too big, I have remove some columns of the players such as position scores and 
+jersey number.
+
+// This next line will be uploading data into our Idyll Page:
+[data name:"fifa" source:"fifa.csv" /]
+
+[Table data:fifa /]
+
+
+[var name: "colorBy" value:`{}` /]
+
+## How to choose the right player -- Skills
+This interactive scatter plots shows the X-axis as the age of the players  and the Y-axis as the Overall Scores
+The overall score can be represented by how good the player is, higher overall scores mean better players.We can the player usually reach his peak time at around
+26-31. after 31 most players' skills and physical power would be getting worse.players before 26 still have a chance to reach higher scores.So if I am the manager I will choose more young players for my team.
+which they are full of potential and cheaper.
+
+[IdyllVegaLite data:fifa spec:`{
+  width: 800,
+  height: 300,
+  mark: "bar",
+  encoding: {
+    x: {field: "Age", type: "quantitative"}, 
+    y: {field: "Overall", type: "quantitative"},
+    color:colorBy
+  }
+}` /]
+
+Color by:
+you are welcome to click the button by aggregating the scores by the Skill Moves and Weak Foot.
+Players with high weak foot's scores and skill moves scores means this is a very valuable player.
+After 26 most players have very low skill move and weak foot scores, which means they are less useful than young players, it's time to retire.
+Even you are a very talented player, but the club would like to put funds in the younger and potential players rather than old players.
+ [button onClick:`colorBy = {}` ]None[/button]
+ [button onClick:`colorBy = {field: 'Skill Moves', type: 'nominal'}` ]Skill Moves[/button]
+ [button onClick:`colorBy = {field: 'Weak Foot', type: 'nominal'}` ]Weak Foots Name[/button]
+ [button onClick:`colorBy = {field: 'International Reputation', type: 'nominal'}` ]International Reputation[/button]
+
+
+[var name:"colorBy2" value:`{}` /]
+
+## How to choose the right player -- Prices & Position
+
+This graph shows the wage from each position, usually players who can get the scores are the most valuable such as ST,RS,RF,RCM,etc.Those position can easlisy oragnize an offense.
+And players who do the defense jobs have lower wages ,such as LWB, RWB, GK,LCB,RCB,etc.
+[IdyllVegaLite data:fifa spec:`{
+  width: 800,
+  height: 300,
+  mark: "bar",
+  encoding: {
+    x: {field: "Wage", type: "quantitative"}, 
+    y: {field: "Position", type: "nominal"},
+    color:colorBy2
+   
+  }
+}` /]
+
+
+
+Color by:
+ [button onClick:`colorBy2 = {}` ]None[/button]
+ [button onClick:`colorBy2 = {field: 'Work Rate', type: 'Nominal'}` ]Work Rate[/button]
+
+
+
+## How to choose the right player -- Cost & Scores-- Author:Jason ZivKovic [Source](https://www.kaggle.com/jaseziv83/clustering-to-help-club-managers)
+
+![image1](https://i.ibb.co/4JkqZzk/unnamed-chunk-8-1.png)
+
+This is a data analyst from the author Jason Zivkovic, the graph shows the relationship between the cost of the players and their scores.
+Higher Rating players are very rare, so they have very high value in the market. Such as Cristiano Ronaldo, Lionel Messi, their price is extremely high.
+At the same time, they can help your team to win the game and have more scores. To the team that doesn't have so much money, they need to find the balance
+of the cost and the player's ability. for example, You could find a very potential young player at a cheaper price, it can help your team win the game also save your money.
+
+## How to choose the right player -- Countries and Chemistry -- Author: Ramakrishnan Thiyagu [Source](https://www.kaggle.com/ramakrishnanthiyagu/fifa-player-analysis)
+
+![image1](https://i.ibb.co/sKZjHLw/results-26-0.png)
+
+This data analyst shows the most 10 countries with more players. If one team has two players who came from the same countries, it can boost the player's scores in the team.
+or if you want to trade the players, you can find the potential players in these countries. Because there are many new players coming from these countries.
+You got a high chance to find potential players.
+
+## Conclusion
+There are still many factors that can help the manager to make the decision in choosing the player, such as player other skills, the club, player history, trading the player.
+This data analyst combines with the data and my own experience in playing this game. The most fun part of this game is you can build any team you want. There are more than 17000 players in this game.
+Strategy and patient are what you need to win the match. I hope this analyst can bring some help to other people who played this game. Thank you All.
+
+## Citation:
+Data set: https://www.kaggle.com/karangadiya/fifa19
+
+Contextual Analyst1:https://www.kaggle.com/jaseziv83/clustering-to-help-club-managers
+Contextual Analyst2:https://www.kaggle.com/ramakrishnanthiyagu/fifa-player-analysis
+
+
